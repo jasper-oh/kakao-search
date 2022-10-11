@@ -16,7 +16,7 @@
     #roadviewControl.active {background-position:0 -350px;}
     #close {position: absolute;padding: 4px;top: 5px;left: 5px;cursor: pointer;background: #fff;border-radius: 4px;border: 1px solid #c8c8c8;box-shadow: 0px 1px #888;}
     #close .img {display: block;background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/rv_close.png) no-repeat;width: 14px;height: 14px;}
-    #latlong {padding:5%}
+    #latlong {padding:3%}
 </style>
 </head>
 <body>
@@ -37,6 +37,7 @@
     <button type="button" onclick="sendPin(lat.value, long.value)">검색하기</button>
 </div>
 
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6495b6c32825afbe0224258e9bbabd5f"></script>
 <script>
 var overlayOn = false, // 지도 위에 로드뷰 오버레이가 추가된 상태를 가지고 있을 변수
@@ -46,6 +47,11 @@ var overlayOn = false, // 지도 위에 로드뷰 오버레이가 추가된 상�
     rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div 입니다
 
 function sendPin(lat, long){
+    var inputLat = document.getElementById("lat")
+    var inputlong = document.getElementById("long")
+    inputLat.value = ""
+    inputlong.value = ""
+
     var moveLatLon = new kakao.maps.LatLng(lat,long)
     var marker = new kakao.maps.Marker({
         position: moveLatLon
@@ -53,6 +59,7 @@ function sendPin(lat, long){
     map.panTo(moveLatLon)
     marker.setMap(map)
 }
+
 
 var mapCenter = new kakao.maps.LatLng(37.420023,127.1266546), // 지도의 중심좌표
     mapOption = {
