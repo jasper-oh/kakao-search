@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>지도 위 버튼으로 로드뷰 표시하기</title>
+    <title>좌표와 로드뷰를 한번에!</title>
     <style>
         html,body{
             width:100%;
@@ -34,7 +34,6 @@
 <div id="latlong">
     <span>위도</span><input type="text" id="lat">
     <span>경도</span><input type="text" id="long">
-    <!-- <button type="button" onclick="sendData(lat.value, long.value)">검색하기</button> -->
     <button type="button" onclick="sendPin(lat.value, long.value)">검색하기</button>
 </div>
 
@@ -46,24 +45,6 @@ var overlayOn = false, // 지도 위에 로드뷰 오버레이가 추가된 상�
     mapContainer = document.getElementById('map'), // 지도를 표시할 div 입니다
     rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div 입니다
 
-// function sendData(lat, long){
-
-//     var mapCenter = new kakao.maps.LatLng(lat , long), // 지도의 중심좌표
-//     mapOption = {
-//         center: mapCenter, // 지도의 중심좌표
-//         level: 3 // 지도의 확대 레벨
-//     };
-
-//     // 지도를 표시할 div와 지도 옵션으로 지도를 생성합니다
-//     var map = new kakao.maps.Map(mapContainer, mapOption);
-
-//     var markerPosition = new kakao.maps.LatLng(lat, long)
-
-//     var marker= new kakao.maps.Marker({
-//         position: markerPosition
-//     })
-//     marker.setMap(map);
-// }
 function sendPin(lat, long){
     var moveLatLon = new kakao.maps.LatLng(lat,long)
     var marker = new kakao.maps.Marker({
