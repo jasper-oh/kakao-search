@@ -21,30 +21,25 @@
 </div>
 
 <div>
- 
+
         <span>위도</span><input type="text" id="lat">
 
         <span>경도</span><input type="text" id="long">
 
-        <button type="button" onclick="sendData(lat.value, long.value)">검색하기</button> 
-    
+        <button type="button" onclick="sendData(lat.value, long.value)">검색하기</button>
+
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6495b6c32825afbe0224258e9bbabd5f&libraries=services"></script>
 <script>
-    var latData = 0;
-    var longData = 0;
- function sendData(lat, long){
-    latData = lat
-    longData = long
- }
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(latData, longData), // 지도의 중심좌표
-        level: 1 // 지도의 확대 레벨
-    };  
 
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    mapOption = {
+        center: new kakao.maps.LatLng(32.1010, 102.3433), // 지도의 중심좌표
+        level: 1 // 지도의 확대 레벨
+    };
+
+// 지도를 생성합니다
+var map = new kakao.maps.Map(mapContainer, mapOption);
 
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
@@ -61,20 +56,20 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
         if (status === kakao.maps.services.Status.OK) {
             var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
             detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
-            
+
             var content = '<div class="bAddr">' +
-                            '<span class="title">법정동 주소정보</span>' + 
-                            detailAddr + 
+                            '<span class="title">법정동 주소정보</span>' +
+                            detailAddr +
                         '</div>';
 
-            // 마커를 클릭한 위치에 표시합니다 
+            // 마커를 클릭한 위치에 표시합니다
             marker.setPosition(mouseEvent.latLng);
             marker.setMap(map);
 
             // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
             infowindow.setContent(content);
             infowindow.open(map, marker);
-        }   
+        }
     });
 });
 
@@ -85,7 +80,7 @@ kakao.maps.event.addListener(map, 'idle', function() {
 
 function searchAddrFromCoords(coords, callback) {
     // 좌표로 행정동 주소 정보를 요청합니다
-    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
 }
 
 function searchDetailAddrFromCoords(coords, callback) {
@@ -105,7 +100,7 @@ function displayCenterInfo(result, status) {
                 break;
             }
         }
-    }    
+    }
 }
 </script>
 </body>
