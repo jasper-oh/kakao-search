@@ -21,25 +21,27 @@
 </div>
 
 <div>
-    <form>
+ 
         <span>위도</span><input type="text" id="lat">
 
         <span>경도</span><input type="text" id="long">
 
         <button type="button" onclick="sendData(lat.value, long.value)">검색하기</button> 
-    </form>
+    
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6495b6c32825afbe0224258e9bbabd5f&libraries=services"></script>
 <script>
-    function sendData(lat, long){
-        var mapContainer = document.getElementById('map'),
-        mapOption = {
-            center: new kakao.maps.LatLng(lat, long), // 지도의 중심좌표
-            level: 1 // 지도의 확대 레벨
-        };  
-    }
- // 지도를 표시할 div 
-    
+    var latData = 0;
+    var longData = 0;
+ function sendData(lat, long){
+    latData = lat
+    longData = long
+ }
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(latData, longData), // 지도의 중심좌표
+        level: 1 // 지도의 확대 레벨
+    };  
 
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
